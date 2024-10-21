@@ -1,0 +1,14 @@
+deployment:
+  tasks:
+    - export:
+        commit: "HEAD"
+        path: "/home/comdatca/public_html"
+    - sync:
+        source: "/home/comdatca/repositories/comdat"
+        destination: "/home/comdatca/public_html"
+        delete: true
+        options:
+          - "--exclude .git"
+          - "--exclude .cpanel.yml"
+    - restart:
+        service: "apache"
